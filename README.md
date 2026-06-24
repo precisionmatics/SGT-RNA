@@ -82,21 +82,3 @@ PDFL-RNA/
   requirements.txt
   README.md
 ```
-
-## Citation
-
-If you use PDFL-RNA in your research, please cite:
-
-```bibtex
-@article{pdfl_rna_2026,
-  title   = {Persistent Directed Flag Laplacian with Subtype-Specific Residual Correction for RNA-Ligand Binding Affinity Prediction},
-  author  = {[Authors]},
-  journal = {Journal of Chemical Information and Modeling},
-  year    = {2026},
-  doi     = {[DOI]}
-}
-```
-
-## Contact
-
-For questions, please open an issue or contact [email].
