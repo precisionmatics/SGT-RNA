@@ -1,0 +1,2 @@
+model,Pearson_r,Spearman_rho,RMSE,MAE,R2,n_features,best_alphas
+Step5_Ridge_expanded,0.5165,0.4441,1.3428,1.077,0.2619,38064,"[10000, 10000, 10000, 10000, 10000]"

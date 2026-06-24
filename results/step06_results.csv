@@ -1,0 +1,5 @@
+subtype,n,cv,Pearson_r,Spearman_rho,RMSE,MAE,R2
+aptamer,18,5-fold,0.8701,0.7506,0.9445,0.7004,0.7426
+other,68,5-fold,0.1388,0.184,1.464,1.0854,-0.0178
+ribosomal_asite,8,LOO,-0.7852,-0.6429,1.1104,0.8012,-0.6649
+riboswitch,45,5-fold,0.3279,0.2058,1.4406,1.1391,0.1039
