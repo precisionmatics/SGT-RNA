@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 34: Proper Double-Nested LOO Validation
+SGT-RNA · Step 34: Proper Double-Nested LOO Validation
 
 Fixes the audit flag from step33: hyperparameter config was selected from 250
 candidates using the same LOO-r that was reported (meta-level selection bias).
@@ -30,7 +30,7 @@ from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 RES_DIR = ROOT / "results"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 
@@ -45,7 +45,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 34: Double-Nested LOO Validation")
+log.info("SGT-RNA · Step 34: Double-Nested LOO Validation")
 log.info("=" * 70)
 
 # ── Load data ──────────────────────────────────────────────────────────────
