@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 4: Multi-Scale Feature Expansion + Advanced ML Training
+SGT-RNA  ·  Step 4: Multi-Scale Feature Expansion + Advanced ML Training
 
 Advanced strategies:
   1. Multi-scale FRI: η ∈ {2, 5, 8} Å  (Exponential kernel)
@@ -63,9 +63,9 @@ def get_cpu_temp():
     return 0.0
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
-NPZ_ETA5 = ROOT / "data" / "features" / "step03_pdfl_features.npz"
+NPZ_ETA5 = ROOT / "data" / "features" / "step03_sgt_features.npz"
 OUT_DIR  = ROOT / "data" / "features"
 RES_DIR  = ROOT / "results"
 FIG_DIR  = ROOT / "results" / "figures"
@@ -82,7 +82,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 4: Multi-Scale ML Training")
+log.info("SGT-RNA  ·  Step 4: Multi-Scale ML Training")
 log.info("=" * 70)
 
 # ── constants ─────────────────────────────────────────────────────────────────
@@ -408,7 +408,7 @@ BENCH_COLOR = "#AAAAAA"
 # ── Figure 1: Pred vs Obs + residual for best model ──────────────────────────
 fig1, axes1 = plt.subplots(1, 2, figsize=(16, 7))
 fig1.patch.set_facecolor("white")
-fig1.suptitle(f"RNA-PDFL  |  Step 4: Best Model — {best_model}  (r = {best_r:.4f})",
+fig1.suptitle(f"SGT-RNA  |  Step 4: Best Model — {best_model}  (r = {best_r:.4f})",
               fontsize=15, fontweight="bold")
 
 ax = axes1[0]
@@ -453,7 +453,7 @@ log.info(f"  Figure saved → {p1}")
 fig2 = plt.figure(figsize=(20, 12))
 fig2.patch.set_facecolor("white")
 gs2  = gridspec.GridSpec(2, 2, figure=fig2, hspace=0.45, wspace=0.38)
-fig2.suptitle("RNA-PDFL  |  Step 4: Model Performance vs Benchmarks",
+fig2.suptitle("SGT-RNA  |  Step 4: Model Performance vs Benchmarks",
               fontsize=16, fontweight="bold", y=0.98)
 
 # Panel A: Pearson r comparison bar chart
@@ -479,7 +479,7 @@ for (bname, br), ls, bc in zip(BENCHMARKS, bench_styles, bench_cols):
 ax.set_xticks(x_pos)
 ax.set_xticklabels(labels_s, fontsize=11)
 ax.set_ylabel("Pearson r (OOF)", fontsize=12)
-ax.set_title("A  |  RNA-PDFL Model Performance vs Published Benchmarks",
+ax.set_title("A  |  SGT-RNA Model Performance vs Published Benchmarks",
              fontsize=13, fontweight="bold", loc="left")
 ax.set_ylim(0, max(max(pearson_all), 0.84) * 1.08)
 for i, v in enumerate(pearson_s):
@@ -589,7 +589,7 @@ ax3.barh(range(30)[::-1], top30_imp, color=bar_cols, alpha=0.85, edgecolor="whit
 ax3.set_yticks(range(30)[::-1])
 ax3.set_yticklabels([n.replace("|"," | ") for n in top30_names], fontsize=8.5)
 ax3.set_xlabel("LightGBM Feature Importance (gain)", fontsize=12)
-ax3.set_title("RNA-PDFL  |  Step 4: Top 30 LightGBM Feature Importances\n"
+ax3.set_title("SGT-RNA  |  Step 4: Top 30 LightGBM Feature Importances\n"
               "(red=η=2 Å  ·  blue=η=5 Å  ·  green=η=8 Å)",
               fontsize=13, fontweight="bold")
 ax3.grid(axis="x", alpha=0.3, linestyle="--")
