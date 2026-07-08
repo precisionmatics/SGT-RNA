@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 23: Meta-stacking Ensemble + Extended Kernel
+SGT-RNA · Step 23: Meta-stacking Ensemble + Extended Kernel
 
 Two-level learning:
   Level-1: LOO predictions from steps 11, 21, 22 (unbiased base estimates)
@@ -37,8 +37,8 @@ from sklearn.cluster import KMeans
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S21_CSV = ROOT / "results" / "step21_results.csv"
 S22_CSV = ROOT / "results" / "step22_results.csv"
@@ -59,7 +59,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 23: Meta-stacking + Extended Kernel")
+log.info("SGT-RNA · Step 23: Meta-stacking + Extended Kernel")
 log.info("=" * 70)
 
 # ── Subtype labels ─────────────────────────────────────────────────────────
@@ -494,7 +494,7 @@ n_g4    = g4_mask.sum()
 y_g4    = y[g4_mask]
 log.info(f"  G4: n={n_g4}")
 
-# G4-specific features: RLIF_ext (37) + PDFL topological (key columns)
+# G4-specific features: RLIF_ext (37) + SGT topological (key columns)
 X_g4_full = np.hstack([
     X_rlif_ext[g4_mask],          # 37 interaction features
     X11[g4_mask, 38048:38064],    # NucComp + Physico
