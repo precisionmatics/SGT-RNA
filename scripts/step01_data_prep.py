@@ -1,5 +1,5 @@
 """
-RNA-PDFL Project — Step 1: Data Preparation & Exploratory Data Analysis
+SGT-RNA Project — Step 1: Data Preparation & Exploratory Data Analysis
 ========================================================================
 Authors : Stalin (PI) + Claude
 Goal    : Build a clean, labeled dataset for RNA–small molecule binding
@@ -14,7 +14,7 @@ Inputs
                                         {pdb}_ligand.sdf
                                         {pdb}_ligand.mol2
 
-Outputs (all under RNA_PDFL/)
+Outputs (all under RNA_SGT/)
 ------------------------------
   data/affinity/dataset.csv          — clean labeled dataset
   results/logs/step01_YYYYMMDD.log
@@ -40,8 +40,8 @@ from matplotlib.ticker import MaxNLocator
 import seaborn as sns
 
 # ─── 0. Paths ────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L_DIR  = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")          # extracted tar
+ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")          # extracted tar
 INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/"
                   "CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
 
@@ -63,7 +63,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 1: Data Preparation & EDA")
+log.info("SGT-RNA  ·  Step 1: Data Preparation & EDA")
 log.info("=" * 70)
 
 # ─── 2. Affinity parser ──────────────────────────────────────────────────────
@@ -454,7 +454,7 @@ ax.set_xlabel("Ligand Element", fontsize=13, fontweight="bold")
 ax.set_ylabel("RNA Pocket Element", fontsize=13, fontweight="bold")
 ax.set_title(
     "RNA × Ligand Element Co-occurrence Across Dataset\n"
-    "(Defines the 36 Interaction Pairs for RNA-PDFL Feature Extraction)",
+    "(Defines the 36 Interaction Pairs for SGT-RNA Feature Extraction)",
     fontsize=13, fontweight="bold", pad=12
 )
 # Annotate cells
