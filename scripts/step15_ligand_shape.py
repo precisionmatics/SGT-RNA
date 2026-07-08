@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 15: Intra-Ligand PDFL + 3D Shape Features
+SGT-RNA · Step 15: Intra-Ligand SGT + 3D Shape Features
 
 Two novel feature types computed from existing SDF crystal structures:
 
@@ -8,8 +8,8 @@ Two novel feature types computed from existing SDF crystal structures:
    InertialShapeFactor, PBF, RadiusOfGyration
    Captures planarity (G-quad flat aromatics) vs sphericity (riboswitch compact).
 
-2. Intra-Ligand PDFL (3,600 features):
-   PDFL applied to ligand-internal atom graph using cross-element pairs only
+2. Intra-Ligand SGT (3,600 features):
+   SGT applied to ligand-internal atom graph using cross-element pairs only
    (36 pairs: C-N, C-O, C-S, N-O, ... avoiding self-pair diagonal issue).
    ETA=3.0 Å (molecular scale). 36 × 5 × 2 × 10 = 3,600 features.
    Captures ring topology, aromaticity, branching — complementary to Morgan.
@@ -47,8 +47,8 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
 OUT_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"
@@ -66,10 +66,10 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 15: Intra-Ligand PDFL + 3D Shape Features")
+log.info("SGT-RNA · Step 15: Intra-Ligand SGT + 3D Shape Features")
 log.info("=" * 70)
 
-# ── PDFL constants (intra-ligand scale) ───────────────────────────────────────
+# ── SGT constants (intra-ligand scale) ───────────────────────────────────────
 LIG_ELEMENTS = ["C", "N", "O", "S", "P", "F", "Cl", "Br", "I"]
 # Only cross-element pairs (e1 < e2 by index) to avoid self-pair diagonal
 CROSS_PAIRS = [(e1, e2) for i, e1 in enumerate(LIG_ELEMENTS)
@@ -85,7 +85,7 @@ N_SHAPE_FEATS = 8
 N_NEW_FEATS   = N_ILIG_FEATS + N_SHAPE_FEATS  # 3,608
 
 log.info(f"Cross-element pairs : {len(CROSS_PAIRS)}")
-log.info(f"Intra-lig PDFL feats: {N_ILIG_FEATS}")
+log.info(f"Intra-lig SGT feats: {N_ILIG_FEATS}")
 log.info(f"Shape features      : {N_SHAPE_FEATS}")
 log.info(f"Total new features  : {N_NEW_FEATS}")
 
@@ -107,7 +107,7 @@ def make_subtype(pdb, raw):
     if pdb in DUPLEX_GROOVE:   return "duplex_groove"
     return raw
 
-# ── PDFL helpers ──────────────────────────────────────────────────────────────
+# ── SGT helpers ──────────────────────────────────────────────────────────────
 def spectral_stats(eigs):
     if len(eigs) == 0:
         return np.zeros(N_STATS, dtype=np.float32)
@@ -129,7 +129,7 @@ def build_L0(W_sel):
     return L
 
 def pair_features_lig(rc, lc):
-    """PDFL for a cross-element pair within the ligand."""
+    """SGT for a cross-element pair within the ligand."""
     n_feat = len(THRESHOLDS) * 2 * N_STATS
     if len(rc) == 0 or len(lc) == 0:
         return np.zeros(n_feat, dtype=np.float32)
@@ -187,7 +187,7 @@ def extract_lig_features(pdb):
         except Exception:
             shape = shape_zero
 
-        # Intra-ligand PDFL: collect element → coords
+        # Intra-ligand SGT: collect element → coords
         mol_noH = Chem.RemoveHs(mol)
         conf    = mol_noH.GetConformer()
         el2coords = {}
@@ -224,7 +224,7 @@ step11_preds = pd.read_csv(S11_CSV).set_index("pdb")
 step11_preds = np.array([step11_preds.loc[p,"y_pred"] for p in ids])
 
 # ── compute new features ──────────────────────────────────────────────────────
-log.info(f"\nComputing 3D shape + intra-ligand PDFL for {n} complexes ...")
+log.info(f"\nComputing 3D shape + intra-ligand SGT for {n} complexes ...")
 X_shape = np.zeros((n, N_SHAPE_FEATS), dtype=np.float32)
 X_ilig  = np.zeros((n, N_ILIG_FEATS),  dtype=np.float32)
 
@@ -413,7 +413,7 @@ for st in unique_subtypes:
 mn, mx = y.min()-0.5, y.max()+0.5
 ax.plot([mn,mx],[mn,mx],"k--",lw=1,alpha=0.4)
 ax.set_xlabel("Experimental pKd"); ax.set_ylabel("Predicted pKd")
-ax.set_title(f"Step 15: Intra-lig PDFL + Shape  (r={combined_r:.4f})", fontweight="bold")
+ax.set_title(f"Step 15: Intra-lig SGT + Shape  (r={combined_r:.4f})", fontweight="bold")
 ax.legend(fontsize=7, loc="upper left", framealpha=0.7)
 ax.grid(alpha=0.3, linestyle="--")
 
