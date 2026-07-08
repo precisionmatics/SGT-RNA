@@ -1,10 +1,10 @@
 """
-RNA-PDFL · Step 10: STORM Database Augmentation
+SGT-RNA · Step 10: STORM Database Augmentation
 
 Adds 900 STORM entries (confidence_score > 0.7) with experimental pKd
 to expand the training set from NL2020's 143 complexes.
 
-For STORM entries we compute the same non-PDFL features as NL2020:
+For STORM entries we compute the same non-SGT features as NL2020:
   - Morgan ECFP4 2048-bit + MACCS 167-bit     (from SMILES)
   - Ligand physico: MW, n_rings, HBD, HBA, RotB, TPSA  (from SMILES)
   - Nucleotide composition: 10 features         (from RNA sequence)
@@ -12,12 +12,12 @@ For STORM entries we compute the same non-PDFL features as NL2020:
   - ViennaRNA SS: MFE, base pairs, fractions, diversity (from RNA seq)
   - RNA-FM embeddings: 640-dim                  (from RNA sequence)
 
-Total non-PDFL feature vector: 2,963 features per complex
+Total non-SGT feature vector: 2,963 features per complex
 (Same slice that exists in NL2020's step09 NPZ: columns 36000–38963)
 
 Combined dataset: NL2020 (143) + STORM (900) = 1,043 complexes
-Train per-subtype Ridge on combined data using non-PDFL features.
-Also train stacked ensemble: combined-model OOF + NL2020-only PDFL model.
+Train per-subtype Ridge on combined data using non-SGT features.
+Also train stacked ensemble: combined-model OOF + NL2020-only SGT model.
 """
 
 import logging, warnings, time
@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-PDFL_ROOT  = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+PDFL_ROOT  = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 STORM_BASE = Path("/home/stalin/Desktop/RNA_Database/Dataset/Boltz2_Results")
 CSV_DIR    = Path("/home/stalin/Desktop/RNA_Database/Dataset/CSV_Files")
 
@@ -75,7 +75,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 10: STORM Database Augmentation")
+log.info("SGT-RNA · Step 10: STORM Database Augmentation")
 log.info("=" * 70)
 
 SEED   = 42
@@ -132,7 +132,7 @@ for rna_type, subtype in STORM_SUBTYPE.items():
 storm_df = pd.concat(frames, ignore_index=True)
 log.info(f"  Total STORM entries: {len(storm_df)}")
 
-# ── load NL2020 step09 features and strip PDFL ────────────────────────────────
+# ── load NL2020 step09 features and strip SGT ────────────────────────────────
 log.info("\nLoading NL2020 step09 features ...")
 d9      = np.load(NPZ_S9, allow_pickle=True)
 X9_full = d9["X"].astype(np.float32)          # (143, 38963)
@@ -141,7 +141,7 @@ ids_nl  = [str(i) for i in d9["ids"]]
 sub_nl  = list(d9["subtypes"])
 
 # Feature layout of step09 NPZ (38963 total):
-# [0:36000]   PDFL (36000)
+# [0:36000]   SGT (36000)
 # [36000:38048] Morgan ECFP4 (2048)
 # [38048:38058] nuc composition (10)
 # [38058:38064] ligand physico (6)
@@ -152,7 +152,7 @@ sub_nl  = list(d9["subtypes"])
 NON_PDFL_START = 36000
 X9_noPDFL = X9_full[:, NON_PDFL_START:]   # (143, 2963)
 N_SEQ_FEAT = X9_noPDFL.shape[1]
-log.info(f"  NL2020 non-PDFL features: {X9_noPDFL.shape}")
+log.info(f"  NL2020 non-SGT features: {X9_noPDFL.shape}")
 
 # ── feature extraction functions ──────────────────────────────────────────────
 log.info("\nLoading RNA-FM model ...")
@@ -393,7 +393,7 @@ for bm, bv in BENCHMARKS.items():
     sym = "✓" if r_nl >= bv else "✗"
     log.info(f"    {sym} {'above' if r_nl >= bv else 'below'}  {bm}: {bv}")
 
-log.info(f"\n  Step 9 (NL2020 only, PDFL): 0.5350")
+log.info(f"\n  Step 9 (NL2020 only, SGT): 0.5350")
 log.info(f"  Step 10 (combined, seq only): NL2020 r = {r_nl:.4f}")
 log.info(f"  Time: {int(time.time()-t0)}s")
 
