@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 26: Water-mediated Contact Fingerprint (WCF) + Contact Pair FP (CPF)
+SGT-RNA · Step 26: Water-mediated Contact Fingerprint (WCF) + Contact Pair FP (CPF)
 
 Two novel structure-based features:
 
@@ -36,8 +36,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S24_CSV = ROOT / "results" / "step24_results.csv"
 RES_DIR = ROOT / "results"
@@ -57,7 +57,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 26: Water Contacts + Contact Pair Fingerprint")
+log.info("SGT-RNA · Step 26: Water Contacts + Contact Pair Fingerprint")
 log.info("=" * 70)
 
 G_QUAD        = {"1nzm","5cdb","4xwf","4znp","5btp","6jj0","2mg8","2loa"}
