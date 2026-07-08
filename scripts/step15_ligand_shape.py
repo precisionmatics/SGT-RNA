@@ -160,7 +160,7 @@ def pair_features_lig(rc, lc):
 
 # ── feature extraction from SDF ───────────────────────────────────────────────
 def extract_lig_features(pdb):
-    """Returns (shape_feats: 8, ilig_pdfl: 3600) for one complex."""
+    """Returns (shape_feats: 8, ilig_sgt: 3600) for one complex."""
     sdf_path = NA_L / pdb / f"{pdb}_ligand.sdf"
     shape_zero = np.zeros(N_SHAPE_FEATS, dtype=np.float32)
     ilig_zero  = np.zeros(N_ILIG_FEATS,  dtype=np.float32)
