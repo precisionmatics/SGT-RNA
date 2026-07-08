@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 27: SAM_SAH Targeted Model + Improved Riboswitch Hybrid
+SGT-RNA · Step 27: SAM_SAH Targeted Model + Improved Riboswitch Hybrid
 
 The global 5k-MKL gives r=-0.326 for SAM_SAH riboswitches (n=10).
 Key insight from step26 probe: SAM_SAH affinity is driven by Guanine contacts.
@@ -28,8 +28,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 
@@ -48,7 +48,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 27: SAM_SAH Targeted Model")
+log.info("SGT-RNA · Step 27: SAM_SAH Targeted Model")
 log.info("=" * 70)
 
 # ── Subtype definitions ────────────────────────────────────────────────────
