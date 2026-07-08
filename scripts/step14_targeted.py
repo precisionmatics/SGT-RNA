@@ -95,7 +95,7 @@ s11df = pd.read_csv(S11_CSV).set_index("pdb")
 step11_preds = np.array([s11df.loc[pdb,"y_pred"] for pdb in ids])
 
 # ── feature blocks (step11 layout) ───────────────────────────────────────────
-# PDFL[0:36000] Morgan[36000:38048] NucComp[38048:38058] Physico[38058:38064]
+# SGT[0:36000] Morgan[36000:38048] NucComp[38048:38058] Physico[38058:38064]
 # RNA-FM[38064:38704] SS[38704:38712] kmer[38712:38796] MACCS[38796:38963]
 # Iface4[38963:42563] Iface6[42563:46163] Iface8[46163:49763]
 
