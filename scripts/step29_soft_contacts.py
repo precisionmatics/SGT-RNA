@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 29: Soft Contact Fingerprint (SCF) + Ribosomal A-site Targeted Model
+SGT-RNA · Step 29: Soft Contact Fingerprint (SCF) + Ribosomal A-site Targeted Model
 
 Current best: r=0.7874 (beats DeepRSMA r=0.784, gap to RSAPred r=0.830 = 0.043).
 Main bottlenecks:
@@ -42,8 +42,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 
@@ -62,7 +62,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 29: SCF + Ribosomal A-site Targeted Model")
+log.info("SGT-RNA · Step 29: SCF + Ribosomal A-site Targeted Model")
 log.info("=" * 70)
 
 # ── Subtype definitions ────────────────────────────────────────────────────
