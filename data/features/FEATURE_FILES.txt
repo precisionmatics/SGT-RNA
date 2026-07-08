@@ -1,4 +1,4 @@
-PDFL-RNA Feature Files
+SGT-RNA Feature Files
 ======================
 
 NOTE: Large feature files (.npy, .npz) are not included in this repository
