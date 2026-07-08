@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 2: Pocket Extraction & FRI-Weighted Digraph Construction
+SGT-RNA  ·  Step 2: Pocket Extraction & FRI-Weighted Digraph Construction
 
 For each of 143 RNA–small molecule complexes:
   1. Parse {pdb}_pocket.pdb  → RNA pocket atoms, keep elements {C, N, O, P}
@@ -29,8 +29,8 @@ from scipy.spatial.distance import cdist
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L_DIR  = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 DATASET   = ROOT / "data" / "affinity" / "dataset.csv"
 OUT_DIR   = ROOT / "data" / "pocket_fri"
 FIG_DIR   = ROOT / "results" / "figures"
@@ -48,7 +48,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 2: Pocket Extraction & FRI-Weighted Digraph")
+log.info("SGT-RNA  ·  Step 2: Pocket Extraction & FRI-Weighted Digraph")
 log.info("=" * 70)
 
 # ── constants ─────────────────────────────────────────────────────────────────
@@ -353,7 +353,7 @@ plt.rcParams.update({
 fig = plt.figure(figsize=(20, 18))
 fig.patch.set_facecolor("white")
 gs  = gridspec.GridSpec(3, 3, figure=fig, hspace=0.42, wspace=0.38)
-fig.suptitle("RNA-PDFL  |  Step 2: Pocket Extraction & FRI Digraph QC",
+fig.suptitle("SGT-RNA  |  Step 2: Pocket Extraction & FRI Digraph QC",
              fontsize=16, fontweight="bold", y=0.98)
 
 # ── Panel A: RNA atom counts per element ─────────────────────────────────────
@@ -515,7 +515,7 @@ log.info(f"  QC figure saved → {fig_path}")
 fig2, axes2 = plt.subplots(4, 9, figsize=(32, 14))
 fig2.patch.set_facecolor("white")
 fig2.suptitle(
-    "RNA-PDFL  |  Pairwise Distance Distributions — All 36 RNA×Ligand Element Pairs\n"
+    "SGT-RNA  |  Pairwise Distance Distributions — All 36 RNA×Ligand Element Pairs\n"
     "(with Exponential FRI weight curve overlay)",
     fontsize=15, fontweight="bold", y=1.0
 )
