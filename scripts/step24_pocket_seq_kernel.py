@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 24: Pocket Sequence Kernel + SAM-specific Features
+SGT-RNA · Step 24: Pocket Sequence Kernel + SAM-specific Features
 
 Novel approach: RNA BINDING SITE sequence kernel
   - Extract RNA residue sequence within 6Å of ligand (pocket context)
@@ -37,8 +37,8 @@ from sklearn.cluster import KMeans
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S22_CSV = ROOT / "results" / "step22_results.csv"
 S23_CSV = ROOT / "results" / "step23_results.csv"
@@ -59,7 +59,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 24: Pocket Sequence Kernel + SAM Features")
+log.info("SGT-RNA · Step 24: Pocket Sequence Kernel + SAM Features")
 log.info("=" * 70)
 
 # ── Subtype labels ─────────────────────────────────────────────────────────
