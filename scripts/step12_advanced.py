@@ -1,11 +1,11 @@
 """
-RNA-PDFL · Step 12: Four Advanced Enhancements
+SGT-RNA · Step 12: Four Advanced Enhancements
 
 1. Riboswitch sub-classification: k-means on Morgan fingerprints (k=6)
    → train separate Ridge per riboswitch chemical class
-2. Mg²⁺ PDFL: RNA-Mg and Mg-Ligand PDFL from pocket PDB crystal coords
+2. Mg²⁺ SGT: RNA-Mg and Mg-Ligand SGT from pocket PDB crystal coords
    → 1,300 features (13 pairs × 5 thresholds × 2 × 10)
-3. Concentric shell PDFL: 3 radial shells from ligand centroid (0-4, 4-8, 8-12 Å)
+3. Concentric shell SGT: 3 radial shells from ligand centroid (0-4, 4-8, 8-12 Å)
    → 10,800 features (3 × 3,600)
 4. Betti curves: 20 filtration thresholds (vs current 5) on interface subgraph at 6Å
    → 14,400 features (36 × 20 × 2 × 10)
@@ -39,8 +39,8 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # ── paths ──────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L     = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L     = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 FEAT_S11 = ROOT / "data" / "features" / "step11_full_features.npz"
 DATASET  = ROOT / "data" / "affinity" / "dataset.csv"
@@ -60,10 +60,10 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 12: Advanced Enhancements")
+log.info("SGT-RNA · Step 12: Advanced Enhancements")
 log.info("=" * 70)
 
-# ── PDFL constants ────────────────────────────────────────────────────────────
+# ── SGT constants ────────────────────────────────────────────────────────────
 RNA_ELEMENTS  = ["C", "N", "O", "P"]
 LIG_ELEMENTS  = ["C", "N", "O", "S", "P", "F", "Cl", "Br", "I"]
 THRESHOLDS_5  = [0.0, 0.8, 0.85, 0.90, 0.95]         # original
@@ -84,8 +84,8 @@ N_SHELL_FEATS= len(SHELLS) * len(RNA_ELEMENTS) * len(LIG_ELEMENTS) * len(THRESHO
 # Betti curves: 36 × 20 × 2 × 10 at 6Å interface
 N_BETTI_FEATS= len(RNA_ELEMENTS) * len(LIG_ELEMENTS) * len(THRESHOLDS_20) * 2 * N_STATS
 
-log.info(f"Mg²⁺ PDFL features    : {N_MG_FEATS}")
-log.info(f"Shell PDFL features   : {N_SHELL_FEATS}")
+log.info(f"Mg²⁺ SGT features    : {N_MG_FEATS}")
+log.info(f"Shell SGT features   : {N_SHELL_FEATS}")
 log.info(f"Betti curve features  : {N_BETTI_FEATS}")
 log.info(f"Total new features    : {N_MG_FEATS + N_SHELL_FEATS + N_BETTI_FEATS}")
 
@@ -107,7 +107,7 @@ def make_subtype(pdb, raw):
     if pdb in DUPLEX_GROOVE:   return "duplex_groove"
     return raw
 
-# ── PDFL core ─────────────────────────────────────────────────────────────────
+# ── SGT core ─────────────────────────────────────────────────────────────────
 def spectral_stats(eigs):
     if len(eigs) == 0:
         return np.zeros(N_STATS, dtype=np.float32)
@@ -158,7 +158,7 @@ def pair_features_custom_thresholds(rc, lc, thresholds):
         offset += 2 * N_STATS
     return feats
 
-# ── Feature 1: Mg²⁺ PDFL ──────────────────────────────────────────────────────
+# ── Feature 1: Mg²⁺ SGT ──────────────────────────────────────────────────────
 def parse_mg_coords(pocket_pdb_path):
     coords = []
     try:
@@ -194,7 +194,7 @@ def compute_mg_pdfl(rna_coords, mg_coords):
         feats.append(pair_features_custom_thresholds(rc, mg_coords, THRESHOLDS_5))
     return np.concatenate(feats)  # 400
 
-# ── Feature 2: Concentric shell PDFL ─────────────────────────────────────────
+# ── Feature 2: Concentric shell SGT ─────────────────────────────────────────
 def compute_shell_pdfl(rna_coords, lig_coords):
     """3 shells × 3,600 = 10,800 features."""
     # Ligand centroid
@@ -303,7 +303,7 @@ X_mg    = np.zeros((n, N_MG_FEATS),    dtype=np.float32)
 X_shell = np.zeros((n, N_SHELL_FEATS), dtype=np.float32)
 X_betti = np.zeros((n, N_BETTI_FEATS), dtype=np.float32)
 
-log.info(f"\nComputing Mg²⁺ PDFL, shell PDFL, betti curves ...")
+log.info(f"\nComputing Mg²⁺ SGT, shell SGT, betti curves ...")
 t0 = time.time()
 for idx, rec in enumerate(records):
     pdb = rec["pdb"]
@@ -331,8 +331,8 @@ log.info(f"  Done in {time.time()-t0:.1f}s")
 X_full = np.hstack([X11, X_mg, X_shell, X_betti])
 log.info(f"\nFull feature matrix: {X_full.shape}")
 log.info(f"  step11:       {X11.shape[1]}")
-log.info(f"  + Mg PDFL:    {N_MG_FEATS}")
-log.info(f"  + Shell PDFL: {N_SHELL_FEATS}")
+log.info(f"  + Mg SGT:    {N_MG_FEATS}")
+log.info(f"  + Shell SGT: {N_SHELL_FEATS}")
 log.info(f"  + Betti:      {N_BETTI_FEATS}")
 log.info(f"  = Total:      {X_full.shape[1]}")
 
