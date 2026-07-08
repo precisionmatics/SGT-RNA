@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 8: Corrected Subtypes + MLP Ensemble
+SGT-RNA  ·  Step 8: Corrected Subtypes + MLP Ensemble
 
 Key improvements over Step 7:
   1. Manual override of 23 misclassified PDB entries:
@@ -10,7 +10,7 @@ Key improvements over Step 7:
   2. MLP ensemble for large subtypes (n≥15)
   3. Adaptive stacking: use best-per-subtype (subtype vs global Ridge)
 
-Features: Step 7 NPZ (38,796 features = PDFL + Morgan + RNA-FM + ViennaRNA + k-mer)
+Features: Step 7 NPZ (38,796 features = SGT + Morgan + RNA-FM + ViennaRNA + k-mer)
 """
 
 import logging, warnings, time
@@ -37,7 +37,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 NPZ_S7  = ROOT / "data" / "features" / "step07_full_features.npz"
 LABELS  = ROOT / "results" / "step06_subtype_labels.csv"
 RES_DIR = ROOT / "results"
@@ -58,7 +58,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 8: Corrected Subtypes + Ensemble")
+log.info("SGT-RNA  ·  Step 8: Corrected Subtypes + Ensemble")
 log.info("=" * 70)
 
 SEED = 42
