@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 17: GPU Docking with gnina
+SGT-RNA · Step 17: GPU Docking with gnina
 
 Run gnina (GPU-accelerated) on all 143 NL2020 crystal structures.
 Receptor: pocket.pdb (used directly — no PDBQT conversion needed)
@@ -29,8 +29,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 import warnings
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S15_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
@@ -63,7 +63,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 17: GPU Docking with gnina")
+log.info("SGT-RNA · Step 17: GPU Docking with gnina")
 log.info("=" * 70)
 
 # ── Subtype labels (same as step11+) ─────────────────────────────────────────
