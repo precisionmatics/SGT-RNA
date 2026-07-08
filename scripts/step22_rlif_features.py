@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 22: RNA-Ligand Interaction Fingerprint (RLIF)
+SGT-RNA · Step 22: RNA-Ligand Interaction Fingerprint (RLIF)
 
 Novel 3D-structure-based interaction features extracted directly from
 pocket PDB coordinates (no force-field needed):
@@ -36,8 +36,8 @@ from sklearn.cluster import KMeans
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S21_CSV = ROOT / "results" / "step21_results.csv"
 RES_DIR = ROOT / "results"
@@ -57,7 +57,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 22: RNA-Ligand Interaction Fingerprint (RLIF)")
+log.info("SGT-RNA · Step 22: RNA-Ligand Interaction Fingerprint (RLIF)")
 log.info("=" * 70)
 
 # ── Subtype labels ─────────────────────────────────────────────────────────
