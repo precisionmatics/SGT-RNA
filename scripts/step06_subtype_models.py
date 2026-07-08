@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 6: Subtype-Specific Ridge Models
+SGT-RNA  ·  Step 6: Subtype-Specific Ridge Models
 
 Strategy:
   1. Classify 143 complexes into RNA subtypes using NL2020 index descriptions
@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 NPZ_S5   = ROOT / "data" / "features" / "step05_expanded_features.npz"
 INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
 RES_DIR  = ROOT / "results"
@@ -53,7 +53,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 6: Subtype-Specific Ridge Models")
+log.info("SGT-RNA  ·  Step 6: Subtype-Specific Ridge Models")
 log.info("=" * 70)
 
 SEED = 42
@@ -279,7 +279,7 @@ SUBTYPE_COLORS = {
 
 fig, axes = plt.subplots(1, 3, figsize=(22, 7))
 fig.patch.set_facecolor("white")
-fig.suptitle(f"RNA-PDFL  |  Step 6: Subtype-Specific Ridge Models  "
+fig.suptitle(f"SGT-RNA  |  Step 6: Subtype-Specific Ridge Models  "
              f"(overall r = {r_all:.4f})",
              fontsize=15, fontweight="bold")
 
