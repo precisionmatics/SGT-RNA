@@ -186,7 +186,7 @@ def parse_mg_coords(pocket_pdb_path):
         pass
     return np.array(coords, dtype=np.float32) if coords else np.empty((0, 3), np.float32)
 
-def compute_mg_pdfl(rna_coords, mg_coords):
+def compute_mg_sgt(rna_coords, mg_coords):
     """4 RNA-element × Mg pairs, 5 thresholds, = 400 features."""
     feats = []
     for r_el in RNA_ELEMENTS:
@@ -195,7 +195,7 @@ def compute_mg_pdfl(rna_coords, mg_coords):
     return np.concatenate(feats)  # 400
 
 # ── Feature 2: Concentric shell SGT ─────────────────────────────────────────
-def compute_shell_pdfl(rna_coords, lig_coords):
+def compute_shell_sgt(rna_coords, lig_coords):
     """3 shells × 3,600 = 10,800 features."""
     # Ligand centroid
     lig_all = [v for v in lig_coords.values() if len(v) > 0]
@@ -311,10 +311,10 @@ for idx, rec in enumerate(records):
     # Mg²⁺
     pocket_path = NA_L / pdb / f"{pdb}_pocket.pdb"
     mg_coords   = parse_mg_coords(pocket_path)
-    X_mg[idx]   = compute_mg_pdfl(rec["rna_coords"], mg_coords)
+    X_mg[idx]   = compute_mg_sgt(rec["rna_coords"], mg_coords)
 
     # Shells
-    X_shell[idx] = compute_shell_pdfl(rec["rna_coords"], rec["lig_coords"])
+    X_shell[idx] = compute_shell_sgt(rec["rna_coords"], rec["lig_coords"])
 
     # Betti curves
     X_betti[idx] = compute_betti_curves(rec["rna_coords"], rec["lig_coords"], cutoff=6.0)
