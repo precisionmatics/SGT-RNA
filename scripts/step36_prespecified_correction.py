@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 36: Pre-specified Feature Residual Correction
+SGT-RNA · Step 36: Pre-specified Feature Residual Correction
 
 Fixes the failure of step35 for purine and ribosomal_asite.
 Root cause: at n=20-13, feature selection from 2048/640 candidates inside
@@ -32,7 +32,7 @@ from joblib import Parallel, delayed
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 RES_DIR = ROOT / "results"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 
@@ -47,7 +47,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 36: Pre-specified Feature Residual Correction")
+log.info("SGT-RNA · Step 36: Pre-specified Feature Residual Correction")
 log.info("=" * 70)
 
 # ── Load data ──────────────────────────────────────────────────────────────
