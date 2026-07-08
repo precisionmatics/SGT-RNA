@@ -73,7 +73,7 @@ log.info(f"  Device: {DEVICE}")
 df_seq    = pd.read_csv(SEQ_CSV).set_index("pdb")
 df_labels = pd.read_csv(LABELS_CSV).set_index("pdb")
 d5        = np.load(NPZ_S5, allow_pickle=True)
-X_pdfl    = d5["X"].astype(np.float32)
+X_sgt    = d5["X"].astype(np.float32)
 y         = d5["y"].astype(np.float32)
 ids       = [str(i) for i in d5["ids"]]
 n         = len(y)
@@ -188,9 +188,9 @@ for idx, pdb_id in enumerate(ids):
 log.info(f"  k-mer features shape: {X_kmer.shape}")
 
 # ── combine all features ───────────────────────────────────────────────────────
-X_all = np.concatenate([X_pdfl, X_rnafm, X_ss, X_kmer], axis=1)
+X_all = np.concatenate([X_sgt, X_rnafm, X_ss, X_kmer], axis=1)
 log.info(f"\nFull feature matrix: {X_all.shape}")
-log.info(f"  SGT (Step 5):  {X_pdfl.shape[1]}")
+log.info(f"  SGT (Step 5):  {X_sgt.shape[1]}")
 log.info(f"  RNA-FM:         {X_rnafm.shape[1]}")
 log.info(f"  Secondary str.: {X_ss.shape[1]}")
 log.info(f"  k-mer (84):     {X_kmer.shape[1]}")
