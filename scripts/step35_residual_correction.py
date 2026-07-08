@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 35: Residual Correction for Weak Subgroups
+SGT-RNA · Step 35: Residual Correction for Weak Subgroups
 
 Instead of replacing step30 predictions, we add a subgroup-specific correction:
     y_final[i] = y30[i] + delta[i]
@@ -40,7 +40,7 @@ from joblib import Parallel, delayed
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 RES_DIR = ROOT / "results"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 
@@ -55,7 +55,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 35: Residual Correction (Double-Nested LOO)")
+log.info("SGT-RNA · Step 35: Residual Correction (Double-Nested LOO)")
 log.info("=" * 70)
 
 # ── Load data ──────────────────────────────────────────────────────────────
