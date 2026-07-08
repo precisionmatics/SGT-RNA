@@ -1,11 +1,11 @@
 """
-RNA-PDFL  ·  Step 5: Feature Expansion
+SGT-RNA  ·  Step 5: Feature Expansion
 
-New features added on top of Step 4 PDFL baseline:
-  1. Extended PDFL scales
+New features added on top of Step 4 SGT baseline:
+  1. Extended SGT scales
        Exponential kernel: η ∈ {1, 2, 3, 5, 8, 10, 20}  (7 scales)
        Lorentz kernel:     η ∈ {2, 5, 8}               (3 scales)
-       Total: 10 × 3600 = 36,000 PDFL features
+       Total: 10 × 3600 = 36,000 SGT features
   2. Morgan fingerprints (ECFP4, radius=2, 2048-bit) from ligand SDF
   3. RNA nucleotide composition from pocket PDB
        counts A,U,G,C + fractions fA,fU,fG,fC + GC% + purine% (10 features)
@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 NPZ_S4   = ROOT / "data" / "features" / "step04_multiscale_features.npz"
 CSV_FILE = ROOT / "data" / "affinity" / "dataset.csv"
@@ -66,7 +66,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 5: Feature Expansion")
+log.info("SGT-RNA  ·  Step 5: Feature Expansion")
 log.info("=" * 70)
 
 # ── constants ─────────────────────────────────────────────────────────────────
@@ -170,8 +170,8 @@ log.info("\nLoading pocket coordinates ...")
 with gzip.open(PKL_FILE, "rb") as f:
     records = pickle.load(f)
 
-# ── compute new PDFL scales ───────────────────────────────────────────────────
-log.info("\nComputing extended PDFL scales ...")
+# ── compute new SGT scales ───────────────────────────────────────────────────
+log.info("\nComputing extended SGT scales ...")
 new_scales = []
 
 # Exponential: add η=1,3,10,20 (η=2,5,8 already in X_s4)
@@ -192,7 +192,7 @@ for eta in LOR_ETAS:
     new_scales.append(Xl)
 
 X_pdfl = np.concatenate([X_s4] + new_scales, axis=1)
-log.info(f"\n  Total PDFL features: {X_pdfl.shape[1]}  "
+log.info(f"\n  Total SGT features: {X_pdfl.shape[1]}  "
          f"(10 scales × {N_FEATS_SINGLE})")
 
 # ── load dataset.csv for file paths + ligand physico ─────────────────────────
@@ -266,7 +266,7 @@ log.info(f"  Physico features done — shape {X_phys.shape}")
 # ── concatenate all features ──────────────────────────────────────────────────
 X_all = np.concatenate([X_pdfl, X_morgan, X_comp, X_phys], axis=1)
 log.info(f"\nCombined feature matrix: {X_all.shape}")
-log.info(f"  PDFL:    {X_pdfl.shape[1]}")
+log.info(f"  SGT:    {X_pdfl.shape[1]}")
 log.info(f"  Morgan:  {X_morgan.shape[1]}")
 log.info(f"  RNA comp:{X_comp.shape[1]}")
 log.info(f"  Physico: {X_phys.shape[1]}")
@@ -352,7 +352,7 @@ plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 11,
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 7))
 fig.patch.set_facecolor("white")
-fig.suptitle(f"RNA-PDFL  |  Step 5: Expanded Features  (r = {r_oof:.4f})",
+fig.suptitle(f"SGT-RNA  |  Step 5: Expanded Features  (r = {r_oof:.4f})",
              fontsize=15, fontweight="bold")
 
 # Panel A: pred vs obs
@@ -372,7 +372,7 @@ ax.legend(fontsize=10); ax.grid(alpha=0.3, ls="--")
 
 # Panel B: feature block comparison
 ax = axes[1]
-blocks = ["PDFL\n10 scales\n(36,000)", "Morgan FP\nECFP4\n(2,048)",
+blocks = ["SGT\n10 scales\n(36,000)", "Morgan FP\nECFP4\n(2,048)",
           "RNA comp\n(10)", "Ligand\nphysico\n(6)"]
 sizes  = [X_pdfl.shape[1], MORGAN_BITS, N_COMP, len(physico_cols)]
 colors = ["#4C72B0", "#55A868", "#C44E52", "#8172B2"]
