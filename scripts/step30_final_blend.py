@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 30: Final Consolidation — Optimal Multi-Source Ensemble
+SGT-RNA · Step 30: Final Consolidation — Optimal Multi-Source Ensemble
 
 Current: r=0.8154 (step29). Gap to RSAPred (r=0.830) = 0.0146.
 Blend analysis: optimal per-subtype blending of s27+s29 gives r=0.8228.
@@ -26,8 +26,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 
@@ -46,7 +46,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 30: Final Consolidation + Optimal Ensemble")
+log.info("SGT-RNA · Step 30: Final Consolidation + Optimal Ensemble")
 log.info("=" * 70)
 
 # ── Subtype definitions ────────────────────────────────────────────────────
