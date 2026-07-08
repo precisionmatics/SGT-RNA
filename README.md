@@ -118,18 +118,3 @@ SGT-RNA/
   README.md
 ```
 
-## Citation
-
-If you use SGT-RNA in your research, please cite:
-
-> Stalin Arulsamy. Spectral Graph Topology with Subtype-Specific Residual Correction for RNA-Ligand Binding Affinity Prediction. *Journal of Chemical Information and Modeling*, 2026. Manuscript ci-2026-02097f.
-
-This work builds on the following topological and spectral methods:
-
-> Jones B, Wei GW. Persistent directed flag Laplacians. *Foundations of Data Science*. 2025;7(3):737–758.
-
-> Zia M, Jones B, Feng H, Wei GW. Persistent directed flag Laplacian (PDFL)-based machine learning for protein–ligand binding affinity prediction. *Journal of Chemical Theory and Computation*. 2025;21(8):4276–4285.
-
-> Chen D, Liu G, Du H, Jones B, Wee J, Wang R, Chen J, Shen J, Wei GW. Drug resistance predictions based on a directed flag transformer. *Advanced Sciences*. 2025;12(36):e02756.
-
-> Meng Z, Xia K. Persistent spectral-based machine learning (PerSpect ML) for protein-ligand binding affinity prediction. *Science Advances*. 2021 May 7;7(19):eabc5329.
