@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 16: AutoDock Vina Docking Scores
+SGT-RNA · Step 16: AutoDock Vina Docking Scores
 
 Run AutoDock Vina on all 143 NL2020 crystal structures.
 Receptor: pocket PDB → PDBQT (mk_prepare_receptor)
@@ -30,8 +30,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 import warnings
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S15_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
@@ -58,7 +58,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 16: AutoDock Vina Docking Scores")
+log.info("SGT-RNA · Step 16: AutoDock Vina Docking Scores")
 log.info("=" * 70)
 
 # ── subtype labels ────────────────────────────────────────────────────────────
@@ -91,8 +91,8 @@ rec_map = {r["pdb"]: r for r in records}
 def _vina_worker(args):
     """Run Vina for one complex. args = (pdb, cx, cy, cz, n_lig_atoms)"""
     pdb, cx, cy, cz, n_lig_atoms = args
-    pocket_pdb = Path("/home/stalin/Desktop/PDFL-RNA/NA-L") / pdb / f"{pdb}_pocket.pdb"
-    lig_sdf    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L") / pdb / f"{pdb}_ligand.sdf"
+    pocket_pdb = Path("/home/stalin/Desktop/SGT-RNA/NA-L") / pdb / f"{pdb}_pocket.pdb"
+    lig_sdf    = Path("/home/stalin/Desktop/SGT-RNA/NA-L") / pdb / f"{pdb}_ligand.sdf"
     tmpdir     = Path("/tmp/vina_rna")
     rec_pdbqt  = tmpdir / f"{pdb}_rec.pdbqt"
     lig_pdbqt  = tmpdir / f"{pdb}_lig.pdbqt"
