@@ -142,7 +142,7 @@ def pair_features(rc, lc, kernel_fn):
         off += 2 * N_STATS
     return feats
 
-def compute_pdfl_scale(records, kernel_fn, label):
+def compute_sgt_scale(records, kernel_fn, label):
     n = len(records)
     X = np.zeros((n, N_FEATS_SINGLE), dtype=np.float32)
     for idx, rec in enumerate(records):
@@ -180,19 +180,19 @@ for eta in EXP_ETAS:
     if eta in already_exp:
         continue
     t0 = time.time()
-    Xe = compute_pdfl_scale(records, lambda D, e=eta: fri_exp(D, e), f"exp η={eta}")
+    Xe = compute_sgt_scale(records, lambda D, e=eta: fri_exp(D, e), f"exp η={eta}")
     log.info(f"      time: {time.time()-t0:.1f}s")
     new_scales.append(Xe)
 
 # Lorentz: η=2,5,8
 for eta in LOR_ETAS:
     t0 = time.time()
-    Xl = compute_pdfl_scale(records, lambda D, e=eta: fri_lorentz(D, e), f"Lorentz η={eta}")
+    Xl = compute_sgt_scale(records, lambda D, e=eta: fri_lorentz(D, e), f"Lorentz η={eta}")
     log.info(f"      time: {time.time()-t0:.1f}s")
     new_scales.append(Xl)
 
-X_pdfl = np.concatenate([X_s4] + new_scales, axis=1)
-log.info(f"\n  Total SGT features: {X_pdfl.shape[1]}  "
+X_sgt = np.concatenate([X_s4] + new_scales, axis=1)
+log.info(f"\n  Total SGT features: {X_sgt.shape[1]}  "
          f"(10 scales × {N_FEATS_SINGLE})")
 
 # ── load dataset.csv for file paths + ligand physico ─────────────────────────
@@ -264,9 +264,9 @@ for idx, pdb_id in enumerate(ids):
 log.info(f"  Physico features done — shape {X_phys.shape}")
 
 # ── concatenate all features ──────────────────────────────────────────────────
-X_all = np.concatenate([X_pdfl, X_morgan, X_comp, X_phys], axis=1)
+X_all = np.concatenate([X_sgt, X_morgan, X_comp, X_phys], axis=1)
 log.info(f"\nCombined feature matrix: {X_all.shape}")
-log.info(f"  SGT:    {X_pdfl.shape[1]}")
+log.info(f"  SGT:    {X_sgt.shape[1]}")
 log.info(f"  Morgan:  {X_morgan.shape[1]}")
 log.info(f"  RNA comp:{X_comp.shape[1]}")
 log.info(f"  Physico: {X_phys.shape[1]}")
@@ -374,7 +374,7 @@ ax.legend(fontsize=10); ax.grid(alpha=0.3, ls="--")
 ax = axes[1]
 blocks = ["SGT\n10 scales\n(36,000)", "Morgan FP\nECFP4\n(2,048)",
           "RNA comp\n(10)", "Ligand\nphysico\n(6)"]
-sizes  = [X_pdfl.shape[1], MORGAN_BITS, N_COMP, len(physico_cols)]
+sizes  = [X_sgt.shape[1], MORGAN_BITS, N_COMP, len(physico_cols)]
 colors = ["#4C72B0", "#55A868", "#C44E52", "#8172B2"]
 bars = ax.bar(blocks, sizes, color=colors, alpha=0.85, edgecolor="white")
 for bar, s in zip(bars, sizes):
