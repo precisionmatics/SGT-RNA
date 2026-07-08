@@ -1,11 +1,11 @@
 """
-RNA-PDFL · Step 14: Targeted Model Selection for Hard Subtypes
+SGT-RNA · Step 14: Targeted Model Selection for Hard Subtypes
 
 For each subtype, tries 6 model variants and picks the best LOO r:
   1. global_mkl      — global MKL (best step13 config)
   2. step11_ridge    — step11 adaptive Ridge
   3. tanimoto_kr     — KernelRidge with Tanimoto on Morgan+MACCS only
-  4. iface4_ridge    — Ridge on 4Å interface PDFL only (3600 features)
+  4. iface4_ridge    — Ridge on 4Å interface SGT only (3600 features)
   5. ligand_ridge    — Ridge on Morgan+MACCS+Physico (2221 features)
   6. rna_ridge       — Ridge on RNA-FM+kmer+SS+NucComp (742 features)
   7. ensemble_avg    — average of all 6 predictions
@@ -42,7 +42,7 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
 RES_DIR = ROOT / "results"
@@ -59,7 +59,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 14: Targeted Model Selection")
+log.info("SGT-RNA · Step 14: Targeted Model Selection")
 log.info("=" * 70)
 
 # ── subtype labels ────────────────────────────────────────────────────────────
@@ -99,7 +99,7 @@ step11_preds = np.array([s11df.loc[pdb,"y_pred"] for pdb in ids])
 # RNA-FM[38064:38704] SS[38704:38712] kmer[38712:38796] MACCS[38796:38963]
 # Iface4[38963:42563] Iface6[42563:46163] Iface8[46163:49763]
 
-X_topo    = X11[:, np.r_[0:36000, 38963:49763]]   # full PDFL + interface
+X_topo    = X11[:, np.r_[0:36000, 38963:49763]]   # full SGT + interface
 X_iface4  = X11[:, 38963:42563]                    # 4Å interface only (3600)
 X_lig     = X11[:, 36000:38048]                    # Morgan 2048
 X_maccs   = X11[:, 38796:38963]                    # MACCS 167
@@ -264,7 +264,7 @@ for st in sorted(set(subtypes)):
     p, r = loo_kr(K_tan_sub, ys)
     candidates["tanimoto_kr"] = (p, r)
 
-    # 4. Ridge on 4Å interface PDFL only
+    # 4. Ridge on 4Å interface SGT only
     p, r = loo_ridge(X_iface4[idx], ys)
     candidates["iface4_ridge"] = (p, r)
 
