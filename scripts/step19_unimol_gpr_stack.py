@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 19: UniMol 3D Ligand Repr + GPR + 3-Model Stack
+SGT-RNA · Step 19: UniMol 3D Ligand Repr + GPR + 3-Model Stack
 
 Novel contributions:
 1. Replace Morgan 2048 → UniMol 512 (3D pre-trained transformer, 209M conformations)
@@ -33,8 +33,8 @@ from sklearn.gaussian_process.kernels import RBF, WhiteKernel, ConstantKernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 OUT_NPZ = ROOT / "data" / "features" / "step19_full_features.npz"
 RES_DIR = ROOT / "results"
@@ -55,7 +55,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 19: UniMol 3D + GPR + 3-Model Stack")
+log.info("SGT-RNA · Step 19: UniMol 3D + GPR + 3-Model Stack")
 log.info("=" * 70)
 
 # ── Subtype labels ──────────────────────────────────────────────────────────
@@ -163,7 +163,7 @@ log.info(f"  Saved: {OUT_NPZ}")
 UNIMOL_SLICE = np.s_[36000:36512]
 RNAFM_SLICE  = np.s_[36528:37168]   # 36512+10+6 = 36528
 MACCS_SLICE  = np.s_[37260:37427]   # 36512+10+6+640+8+84 = 37260
-IFACE_SLICE  = np.r_[0:36000, 37427:48227]  # PDFL + 3 iface
+IFACE_SLICE  = np.r_[0:36000, 37427:48227]  # SGT + 3 iface
 
 # ── Pipelines ────────────────────────────────────────────────────────────────
 def make_ridge_pipe(alpha):
