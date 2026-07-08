@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 9: Refined Subclassification + MACCS Keys
+SGT-RNA  ·  Step 9: Refined Subclassification + MACCS Keys
 
 Two improvements over Step 8:
   1. Split "other" (n=45) into sub-types from NL2020 index analysis:
@@ -39,10 +39,10 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 NPZ_S7   = ROOT / "data" / "features" / "step07_full_features.npz"
 LABELS   = ROOT / "results" / "step06_subtype_labels.csv"
-DATA_DIR = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+DATA_DIR = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 OUT_NPZ  = ROOT / "data" / "features" / "step09_full_features.npz"
 RES_DIR  = ROOT / "results"
 FIG_DIR  = ROOT / "results" / "figures"
@@ -62,7 +62,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 9: Refined Subtypes + MACCS Keys")
+log.info("SGT-RNA  ·  Step 9: Refined Subtypes + MACCS Keys")
 log.info("=" * 70)
 
 SEED = 42
