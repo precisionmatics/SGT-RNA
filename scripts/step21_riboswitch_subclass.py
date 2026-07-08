@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 21: Riboswitch Sub-class Aware Models
+SGT-RNA · Step 21: Riboswitch Sub-class Aware Models
 
 Key insight: 61 riboswitches span 5 ligand classes (purine/FMN/SAM/other/amino_acid).
 Within each class: same ligand chemistry → same binding mode → correlated affinities.
@@ -27,8 +27,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
 RES_DIR = ROOT / "results"
@@ -49,7 +49,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 21: Riboswitch Sub-class Aware Models")
+log.info("SGT-RNA · Step 21: Riboswitch Sub-class Aware Models")
 log.info("=" * 70)
 
 # ── Subtype labels ─────────────────────────────────────────────────────────
