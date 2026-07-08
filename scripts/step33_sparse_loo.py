@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 33: Sparse Nested LOO for TPP and FMN_FAD
+SGT-RNA · Step 33: Sparse Nested LOO for TPP and FMN_FAD
 
 Addresses the two riboswitch subclasses where step30 left room for improvement:
   - TPP    (n=10): step30 r=0.761 → sparse nested LOO target r≈0.907
@@ -30,8 +30,8 @@ from sklearn.preprocessing import StandardScaler
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 
@@ -46,7 +46,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 33: Sparse Nested LOO (TPP + FMN_FAD)")
+log.info("SGT-RNA · Step 33: Sparse Nested LOO (TPP + FMN_FAD)")
 log.info("=" * 70)
 
 # ── Load base data ─────────────────────────────────────────────────────────
