@@ -1,8 +1,8 @@
 """
-RNA-PDFL · Step 13: Multiple Kernel Learning (MKL)
+SGT-RNA · Step 13: Multiple Kernel Learning (MKL)
 
 Three kernels from step11 feature blocks:
-  K_topo : RBF on PDFL + interface PDFL (46,800-dim)  — binding topology
+  K_topo : RBF on SGT + interface SGT (46,800-dim)  — binding topology
   K_lig  : Tanimoto on Morgan fingerprint (2,048-dim)  — ligand similarity
   K_RNA  : RBF on RNA-FM embeddings (640-dim)          — RNA sequence/structure
 
@@ -33,7 +33,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # ── paths ──────────────────────────────────────────────────────────────────────
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 FIG_DIR = ROOT / "results" / "figures"
@@ -50,7 +50,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 13: Multiple Kernel Learning")
+log.info("SGT-RNA · Step 13: Multiple Kernel Learning")
 log.info("=" * 70)
 
 # ── subtype labels ────────────────────────────────────────────────────────────
@@ -86,7 +86,7 @@ log.info(f"  X: {X11.shape}  n={n}")
 # step09 (38963): PDFL[0:36000] | Morgan[36000:38048] | NucComp[38048:38058]
 #                 Physico[38058:38064] | RNA-FM[38064:38704] | SS[38704:38712]
 #                 kmer[38712:38796] | MACCS[38796:38963]
-# interface PDFL: [38963:49763] (4Å: 38963:42563, 6Å: 42563:46163, 8Å: 46163:49763)
+# interface SGT: [38963:49763] (4Å: 38963:42563, 6Å: 42563:46163, 8Å: 46163:49763)
 
 X_topo  = X11[:, np.r_[0:36000, 38963:49763]].astype(np.float64)  # 46800
 X_lig   = X11[:, 36000:38048].astype(np.float64)                   # Morgan 2048
