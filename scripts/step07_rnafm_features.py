@@ -1,5 +1,5 @@
 """
-RNA-PDFL  ·  Step 7: RNA-FM Embeddings + Secondary Structure Features
+SGT-RNA  ·  Step 7: RNA-FM Embeddings + Secondary Structure Features
 
 For each complex:
   1. RNA-FM embeddings  → mean-pooled 640-dim vector per complex
@@ -8,7 +8,7 @@ For each complex:
        mean base-pair probability, ensemble diversity (8 features)
   3. k-mer composition (1/2/3-mer): 4 + 16 + 64 = 84 features
 
-Combined with Step 5 PDFL features (38,064) → retrain per-subtype Ridge
+Combined with Step 5 SGT features (38,064) → retrain per-subtype Ridge
 """
 
 import logging, warnings, time
@@ -39,7 +39,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
+ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 NPZ_S5    = ROOT / "data" / "features" / "step05_expanded_features.npz"
 SEQ_CSV   = ROOT / "data" / "affinity" / "rna_sequences.csv"
 LABELS_CSV = ROOT / "results" / "step06_subtype_labels.csv"
@@ -62,7 +62,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL  ·  Step 7: RNA-FM + Secondary Structure + k-mer Features")
+log.info("SGT-RNA  ·  Step 7: RNA-FM + Secondary Structure + k-mer Features")
 log.info("=" * 70)
 
 SEED   = 42
@@ -190,7 +190,7 @@ log.info(f"  k-mer features shape: {X_kmer.shape}")
 # ── combine all features ───────────────────────────────────────────────────────
 X_all = np.concatenate([X_pdfl, X_rnafm, X_ss, X_kmer], axis=1)
 log.info(f"\nFull feature matrix: {X_all.shape}")
-log.info(f"  PDFL (Step 5):  {X_pdfl.shape[1]}")
+log.info(f"  SGT (Step 5):  {X_pdfl.shape[1]}")
 log.info(f"  RNA-FM:         {X_rnafm.shape[1]}")
 log.info(f"  Secondary str.: {X_ss.shape[1]}")
 log.info(f"  k-mer (84):     {X_kmer.shape[1]}")
@@ -202,7 +202,7 @@ log.info(f"  Saved → {npz_path}")
 
 # ── subtype-specific nested CV ────────────────────────────────────────────────
 log.info("\n" + "=" * 70)
-log.info("SUBTYPE-SPECIFIC RIDGE — PDFL + RNA-FM + SS + k-mer")
+log.info("SUBTYPE-SPECIFIC RIDGE — SGT + RNA-FM + SS + k-mer")
 log.info("=" * 70)
 
 ALPHA_GRID = {"est__alpha": [1, 10, 100, 1000, 10000, 100000]}
@@ -304,7 +304,7 @@ COLORS = {"riboswitch":"#4C72B0","aptamer":"#55A868",
 
 fig, axes = plt.subplots(1, 2, figsize=(16, 7))
 fig.patch.set_facecolor("white")
-fig.suptitle(f"RNA-PDFL  |  Step 7: + RNA-FM + SS + k-mer  (r = {r_all:.4f})",
+fig.suptitle(f"SGT-RNA  |  Step 7: + RNA-FM + SS + k-mer  (r = {r_all:.4f})",
              fontsize=15, fontweight="bold")
 
 ax = axes[0]
