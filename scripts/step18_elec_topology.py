@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 18: Electrostatic Persistent Topology
+SGT-RNA · Step 18: Electrostatic Persistent Topology
 
 For each complex:
   1. pdb2pqr (AMBER FF) → RNA atom partial charges
@@ -35,8 +35,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S11_CSV = ROOT / "results"  / "step11_results.csv"
@@ -62,7 +62,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 18: Electrostatic Persistent Topology")
+log.info("SGT-RNA · Step 18: Electrostatic Persistent Topology")
 log.info("=" * 70)
 
 # ── subtype labels ─────────────────────────────────────────────────────────────
@@ -102,7 +102,7 @@ def _elec_worker(args):
     from rdkit import Chem
     from rdkit.Chem import AllChem
 
-    NA_L   = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+    NA_L   = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
     TMPDIR = Path("/tmp/elec_rna")
     nan_feat = np.full(175, np.nan, dtype=np.float32)
 
