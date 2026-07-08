@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 25: DNA G4 RLIF Fix + Kernel Alignment Weighting
+SGT-RNA · Step 25: DNA G4 RLIF Fix + Kernel Alignment Weighting
 
 Critical bug fix:
   5/8 G-quadruplex structures are DNA (DG/DA/DC/DT residues).
@@ -35,8 +35,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S24_CSV = ROOT / "results" / "step24_results.csv"
 RES_DIR = ROOT / "results"
@@ -56,7 +56,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 25: DNA G4 RLIF Fix + CKA Kernel Weighting")
+log.info("SGT-RNA · Step 25: DNA G4 RLIF Fix + CKA Kernel Weighting")
 log.info("=" * 70)
 
 # ── Subtype labels ─────────────────────────────────────────────────────────
