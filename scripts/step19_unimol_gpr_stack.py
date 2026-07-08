@@ -8,7 +8,7 @@ Novel contributions:
 4. 3-model stacked ensemble: Ridge LOO + GPR LOO + MKL LOO → weighted blend
 
 Feature layout (48,227 total vs 49,763 in step11):
-  PDFL[0:36000] | UniMol[36000:36512] | NucComp[36512:36522] | Physico[36522:36528]
+  SGT[0:36000] | UniMol[36000:36512] | NucComp[36512:36522] | Physico[36522:36528]
   RNA-FM[36528:37168] | SS[37168:37176] | kmer[37176:37260] | MACCS[37260:37427]
   Iface4[37427:41027] | Iface6[41027:44627] | Iface8[44627:48227]
 """
@@ -134,7 +134,7 @@ log.info(f"  Signal: dims|r|>0.2: {(dim_rs>0.2).sum()},  top r: {dim_rs.max():.3
 # ── Build step19 feature matrix ─────────────────────────────────────────────
 log.info("\nBuilding step19 features (UniMol replaces Morgan) ...")
 # step11 slices
-X_pdfl  = X11[:, 0:36000]
+X_sgt  = X11[:, 0:36000]
 # skip Morgan [36000:38048]
 X_nuc   = X11[:, 38048:38058]
 X_phys  = X11[:, 38058:38064]
@@ -147,7 +147,7 @@ X_if6   = X11[:, 42563:46163]
 X_if8   = X11[:, 46163:49763]
 
 X19 = np.hstack([
-    X_pdfl,                          # 36000
+    X_sgt,                          # 36000
     unimol_emb.astype(np.float64),   #   512  ← UniMol
     X_nuc, X_phys, X_rnafm,          # 10+6+640
     X_ss, X_kmer, X_maccs,           # 8+84+167
