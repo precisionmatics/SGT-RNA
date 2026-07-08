@@ -1,5 +1,5 @@
 """
-RNA-PDFL · Step 28: Riboswitch Subclass Probe + FMN/Purine Targeted Models
+SGT-RNA · Step 28: Riboswitch Subclass Probe + FMN/Purine Targeted Models
 
 Following step27's success (SAM_SAH: r=-0.326→0.652 using CPF G-contacts),
 we apply the same targeted-model strategy to the remaining riboswitch subclasses:
@@ -33,8 +33,8 @@ from sklearn.metrics.pairwise import rbf_kernel
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/PDFL-RNA/RNA_PDFL")
-NA_L    = Path("/home/stalin/Desktop/PDFL-RNA/NA-L")
+ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 
@@ -53,7 +53,7 @@ logging.basicConfig(
 )
 log = logging.getLogger()
 log.info("=" * 70)
-log.info("RNA-PDFL · Step 28: Riboswitch Subclass Probe + Targeted Models")
+log.info("SGT-RNA · Step 28: Riboswitch Subclass Probe + Targeted Models")
 log.info("=" * 70)
 
 # ── Subtype definitions ────────────────────────────────────────────────────
