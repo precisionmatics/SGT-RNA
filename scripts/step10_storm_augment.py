@@ -51,15 +51,15 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-PDFL_ROOT  = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+SGT_ROOT  = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
 STORM_BASE = Path("/home/stalin/Desktop/RNA_Database/Dataset/Boltz2_Results")
 CSV_DIR    = Path("/home/stalin/Desktop/RNA_Database/Dataset/CSV_Files")
 
-NPZ_S9     = PDFL_ROOT / "data" / "features" / "step09_full_features.npz"
-OUT_NPZ    = PDFL_ROOT / "data" / "features" / "step10_storm_features.npz"
-RES_DIR    = PDFL_ROOT / "results"
-FIG_DIR    = PDFL_ROOT / "results" / "figures"
-LOG_DIR    = PDFL_ROOT / "results" / "logs"
+NPZ_S9     = SGT_ROOT / "data" / "features" / "step09_full_features.npz"
+OUT_NPZ    = SGT_ROOT / "data" / "features" / "step10_storm_features.npz"
+RES_DIR    = SGT_ROOT / "results"
+FIG_DIR    = SGT_ROOT / "results" / "figures"
+LOG_DIR    = SGT_ROOT / "results" / "logs"
 for d in [RES_DIR, FIG_DIR, LOG_DIR]:
     d.mkdir(parents=True, exist_ok=True)
 
@@ -149,10 +149,10 @@ sub_nl  = list(d9["subtypes"])
 # [38704:38712] ViennaRNA SS (8)
 # [38712:38796] k-mer 1/2/3 (84)
 # [38796:38963] MACCS (167)
-NON_PDFL_START = 36000
-X9_noPDFL = X9_full[:, NON_PDFL_START:]   # (143, 2963)
-N_SEQ_FEAT = X9_noPDFL.shape[1]
-log.info(f"  NL2020 non-SGT features: {X9_noPDFL.shape}")
+NON_SGT_START = 36000
+X9_noSGT = X9_full[:, NON_SGT_START:]   # (143, 2963)
+N_SEQ_FEAT = X9_noSGT.shape[1]
+log.info(f"  NL2020 non-SGT features: {X9_noSGT.shape}")
 
 # ── feature extraction functions ──────────────────────────────────────────────
 log.info("\nLoading RNA-FM model ...")
@@ -287,7 +287,7 @@ log.info(f"  STORM features saved → {OUT_NPZ}")
 # ── build combined dataset ────────────────────────────────────────────────────
 log.info("\nBuilding combined NL2020 + STORM dataset ...")
 
-X_combined = np.vstack([X9_noPDFL, storm_feats])       # (1043, 2963)
+X_combined = np.vstack([X9_noSGT, storm_feats])       # (1043, 2963)
 y_combined = np.concatenate([y_nl, storm_df["pKd"].values.astype(np.float32)])
 ids_combined  = ids_nl + list(storm_df["yaml_id"].values)
 sub_combined  = np.array(sub_nl + list(storm_df["subtype"].values))
