@@ -89,9 +89,9 @@ Run the pipeline scripts in order:
 
 ```bash
 # Steps 1-12: SGT feature extraction and contact fingerprint computation
-python scripts/step01_build_graphs.py
-python scripts/step02_compute_laplacians.py
-python scripts/step03_extract_sgt_features.py
+python scripts/step01_data_prep.py
+python scripts/step02_pocket_fri.py
+python scripts/step03_sgt_features.py
 # ... (see individual script headers for details)
 
 # Global ensemble model (steps 13-30)
