@@ -63,7 +63,7 @@ def get_cpu_temp():
     return 0.0
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT     = Path(__file__).resolve().parent.parent
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 NPZ_ETA5 = ROOT / "data" / "features" / "step03_sgt_features.npz"
 OUT_DIR  = ROOT / "data" / "features"

@@ -29,7 +29,7 @@ from scipy.spatial.distance import cdist
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT      = Path(__file__).resolve().parent.parent
 NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 DATASET   = ROOT / "data" / "affinity" / "dataset.csv"
 OUT_DIR   = ROOT / "data" / "pocket_fri"

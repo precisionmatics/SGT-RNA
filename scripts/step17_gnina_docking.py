@@ -29,7 +29,7 @@ from sklearn.metrics.pairwise import rbf_kernel
 import warnings
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT    = Path(__file__).resolve().parent.parent
 NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S15_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"

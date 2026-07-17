@@ -40,7 +40,7 @@ from matplotlib.ticker import MaxNLocator
 import seaborn as sns
 
 # ─── 0. Paths ────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT      = Path(__file__).resolve().parent.parent
 NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")          # extracted tar
 INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/"
                   "CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")

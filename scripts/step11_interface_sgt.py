@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 # ── paths ──────────────────────────────────────────────────────────────────────
-ROOT      = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT      = Path(__file__).resolve().parent.parent
 PKL_FILE  = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 FEAT_NPZ  = ROOT / "data" / "features" / "step09_full_features.npz"
 OUT_NPZ   = ROOT / "data" / "features" / "step11_full_features.npz"

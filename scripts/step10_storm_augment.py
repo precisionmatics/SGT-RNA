@@ -51,7 +51,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-SGT_ROOT  = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+SGT_ROOT  = Path(__file__).resolve().parent.parent
 STORM_BASE = Path("/home/stalin/Desktop/RNA_Database/Dataset/Boltz2_Results")
 CSV_DIR    = Path("/home/stalin/Desktop/RNA_Database/Dataset/CSV_Files")
 

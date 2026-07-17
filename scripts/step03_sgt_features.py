@@ -36,7 +36,7 @@ from matplotlib.colors import LinearSegmentedColormap
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT     = Path(__file__).resolve().parent.parent
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 OUT_DIR  = ROOT / "data" / "features"
 FIG_DIR  = ROOT / "results" / "figures"

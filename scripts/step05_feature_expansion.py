@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT     = Path(__file__).resolve().parent.parent
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 NPZ_S4   = ROOT / "data" / "features" / "step04_multiscale_features.npz"
 CSV_FILE = ROOT / "data" / "affinity" / "dataset.csv"

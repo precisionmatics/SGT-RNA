@@ -40,7 +40,7 @@ from joblib import Parallel, delayed
 
 warnings.filterwarnings("ignore")
 
-ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT    = Path(__file__).resolve().parent.parent
 RES_DIR = ROOT / "results"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 

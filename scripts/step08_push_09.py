@@ -37,7 +37,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT    = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT    = Path(__file__).resolve().parent.parent
 NPZ_S7  = ROOT / "data" / "features" / "step07_full_features.npz"
 LABELS  = ROOT / "results" / "step06_subtype_labels.csv"
 RES_DIR = ROOT / "results"

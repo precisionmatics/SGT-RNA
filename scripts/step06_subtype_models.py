@@ -32,7 +32,7 @@ import matplotlib.pyplot as plt
 warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
-ROOT     = Path("/home/stalin/Desktop/SGT-RNA/RNA_SGT")
+ROOT     = Path(__file__).resolve().parent.parent
 NPZ_S5   = ROOT / "data" / "features" / "step05_expanded_features.npz"
 INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
 RES_DIR  = ROOT / "results"
