@@ -34,7 +34,7 @@ warnings.filterwarnings("ignore")
 # ── paths ─────────────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).resolve().parent.parent
 NPZ_S5   = ROOT / "data" / "features" / "step05_expanded_features.npz"
-INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
+INDEX_FILE = ROOT / "data" / "index" / "INDEX_general_NL.2020"
 RES_DIR  = ROOT / "results"
 FIG_DIR  = ROOT / "results" / "figures"
 LOG_DIR  = ROOT / "results" / "logs"

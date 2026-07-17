@@ -1,20 +1,19 @@
 """
 SGT-RNA Project — Step 1: Data Preparation & Exploratory Data Analysis
 ========================================================================
-Authors : Stalin (PI) + Claude
 Goal    : Build a clean, labeled dataset for RNA–small molecule binding
           affinity prediction using PDBbind NL2020 structures + affinities.
 
 Inputs
 ------
-  INDEX_general_NL.2020  — PDBbind affinity index (149 entries)
+  data/index/INDEX_general_NL.2020  — PDBbind affinity index (149 entries)
   NA-L/                  — Processed structural data (143 complexes)
                            Each folder: {pdb}_nucleic_acid.pdb
                                         {pdb}_pocket.pdb
                                         {pdb}_ligand.sdf
                                         {pdb}_ligand.mol2
 
-Outputs (all under RNA_SGT/)
+Outputs (all under SGT-RNA/)
 ------------------------------
   data/affinity/dataset.csv          — clean labeled dataset
   results/logs/step01_YYYYMMDD.log
@@ -41,9 +40,8 @@ import seaborn as sns
 
 # ─── 0. Paths ────────────────────────────────────────────────────────────────
 ROOT      = Path(__file__).resolve().parent.parent
-NA_L_DIR  = ROOT / "NA-L"          # extracted tar
-INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/"
-                  "CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
+NA_L_DIR  = ROOT / "NA-L"
+INDEX_FILE = ROOT / "data" / "index" / "INDEX_general_NL.2020"
 
 DATA_DIR   = ROOT / "data"
 AFF_DIR    = DATA_DIR / "affinity"

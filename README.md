@@ -73,14 +73,18 @@ pip install -r requirements.txt
 ## Dataset
 
 The PDBbind NL2020 benchmark is available from [http://www.pdbbind.org.cn/](http://www.pdbbind.org.cn/).
-Place the 143 complex folders under `NA-L/` with the structure:
+Place the affinity index file and the 143 complex folders as follows:
 ```
-NA-L/
-  {pdbid}/
-    {pdbid}_pocket.pdb
-    {pdbid}_nucleic_acid.pdb
-    {pdbid}_ligand.sdf
-    {pdbid}_ligand.mol2
+SGT-RNA/
+  data/
+    index/
+      INDEX_general_NL.2020
+  NA-L/
+    {pdbid}/
+      {pdbid}_pocket.pdb
+      {pdbid}_nucleic_acid.pdb
+      {pdbid}_ligand.sdf
+      {pdbid}_ligand.mol2
 ```
 
 ## Reproducing Results
