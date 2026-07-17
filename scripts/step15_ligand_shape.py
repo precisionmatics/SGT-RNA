@@ -48,7 +48,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 ROOT    = Path(__file__).resolve().parent.parent
-NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L    = ROOT / "NA-L"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
 OUT_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"

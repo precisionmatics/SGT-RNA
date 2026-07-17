@@ -20,7 +20,7 @@ Train per-subtype Ridge on combined data using non-SGT features.
 Also train stacked ensemble: combined-model OOF + NL2020-only SGT model.
 """
 
-import logging, warnings, time
+import logging, warnings, time, os
 from pathlib import Path
 from datetime import datetime
 from collections import Counter
@@ -52,8 +52,8 @@ warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
 SGT_ROOT  = Path(__file__).resolve().parent.parent
-STORM_BASE = Path("/home/stalin/Desktop/RNA_Database/Dataset/Boltz2_Results")
-CSV_DIR    = Path("/home/stalin/Desktop/RNA_Database/Dataset/CSV_Files")
+STORM_BASE = Path(os.environ.get("STORM_BASE", ""))   # set env var to your STORM dataset path
+CSV_DIR    = Path(os.environ.get("STORM_CSV_DIR", ""))  # set env var to your STORM CSV path
 
 NPZ_S9     = SGT_ROOT / "data" / "features" / "step09_full_features.npz"
 OUT_NPZ    = SGT_ROOT / "data" / "features" / "step10_storm_features.npz"

@@ -42,7 +42,7 @@ warnings.filterwarnings("ignore")
 ROOT     = Path(__file__).resolve().parent.parent
 NPZ_S7   = ROOT / "data" / "features" / "step07_full_features.npz"
 LABELS   = ROOT / "results" / "step06_subtype_labels.csv"
-DATA_DIR = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+DATA_DIR = ROOT / "NA-L"
 OUT_NPZ  = ROOT / "data" / "features" / "step09_full_features.npz"
 RES_DIR  = ROOT / "results"
 FIG_DIR  = ROOT / "results" / "figures"

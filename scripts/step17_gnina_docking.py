@@ -30,7 +30,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 ROOT    = Path(__file__).resolve().parent.parent
-NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L    = ROOT / "NA-L"
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S15_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
@@ -38,8 +38,8 @@ OUT_NPZ = ROOT / "data" / "features" / "step17_full_features.npz"
 RES_DIR = ROOT / "results"
 FIG_DIR = ROOT / "results" / "figures"
 
-GNINA   = "/home/stalin/Downloads/Enamine/GIPR/gnina"
-CUDNN_PATH = "/home/stalin/miniforge3/lib/python3.13/site-packages/nvidia/cudnn/lib"
+GNINA      = os.environ.get("GNINA_BIN", "gnina")        # set GNINA_BIN env var or ensure gnina is on PATH
+CUDNN_PATH = os.environ.get("CUDNN_LIB_PATH", "")        # set CUDNN_LIB_PATH if cuDNN is not on LD_LIBRARY_PATH
 TMPDIR  = Path("/tmp/gnina_rna")
 TMPDIR.mkdir(parents=True, exist_ok=True)
 

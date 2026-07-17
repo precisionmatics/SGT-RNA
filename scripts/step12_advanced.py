@@ -40,7 +40,7 @@ warnings.filterwarnings("ignore")
 
 # ── paths ──────────────────────────────────────────────────────────────────────
 ROOT     = Path(__file__).resolve().parent.parent
-NA_L     = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L     = ROOT / "NA-L"
 PKL_FILE = ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 FEAT_S11 = ROOT / "data" / "features" / "step11_full_features.npz"
 DATASET  = ROOT / "data" / "affinity" / "dataset.csv"

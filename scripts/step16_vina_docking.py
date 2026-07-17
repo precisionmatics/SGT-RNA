@@ -11,7 +11,7 @@ Combine with step15 features (53,371) → 53,372 total
 Re-evaluate hybrid model.
 """
 
-import subprocess, gzip, pickle, logging, time, tempfile
+import subprocess, gzip, pickle, logging, time, tempfile, os
 from pathlib import Path
 from datetime import datetime
 from concurrent.futures import ProcessPoolExecutor, as_completed
@@ -31,14 +31,14 @@ import warnings
 warnings.filterwarnings("ignore")
 
 ROOT    = Path(__file__).resolve().parent.parent
-NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L    = ROOT / "NA-L"
 PKL_FILE= ROOT / "data" / "pocket_fri" / "pocket_fri_data.pkl.gz"
 S15_NPZ = ROOT / "data" / "features" / "step15_full_features.npz"
 S11_CSV = ROOT / "results" / "step11_results.csv"
 OUT_NPZ = ROOT / "data" / "features" / "step16_full_features.npz"
 RES_DIR = ROOT / "results"
 FIG_DIR = ROOT / "results" / "figures"
-VINA    = "/home/stalin/Desktop/ml_drug_discovery/bin/vina"
+VINA    = os.environ.get("VINA_BIN", "vina")  # set VINA_BIN env var or ensure vina is on PATH
 TMPDIR  = Path("/tmp/vina_rna")
 TMPDIR.mkdir(parents=True, exist_ok=True)
 N_WORKERS = 20   # all cores; each Vina job uses --cpu 1
@@ -91,13 +91,13 @@ rec_map = {r["pdb"]: r for r in records}
 def _vina_worker(args):
     """Run Vina for one complex. args = (pdb, cx, cy, cz, n_lig_atoms)"""
     pdb, cx, cy, cz, n_lig_atoms = args
-    pocket_pdb = Path("/home/stalin/Desktop/SGT-RNA/NA-L") / pdb / f"{pdb}_pocket.pdb"
-    lig_sdf    = Path("/home/stalin/Desktop/SGT-RNA/NA-L") / pdb / f"{pdb}_ligand.sdf"
+    pocket_pdb = ROOT / "NA-L" / pdb / f"{pdb}_pocket.pdb"
+    lig_sdf    = ROOT / "NA-L" / pdb / f"{pdb}_ligand.sdf"
     tmpdir     = Path("/tmp/vina_rna")
     rec_pdbqt  = tmpdir / f"{pdb}_rec.pdbqt"
     lig_pdbqt  = tmpdir / f"{pdb}_lig.pdbqt"
     out_pdbqt  = tmpdir / f"{pdb}_out.pdbqt"
-    vina_bin   = "/home/stalin/Desktop/ml_drug_discovery/bin/vina"
+    vina_bin   = VINA
 
     # Return cached score if output already exists
     if out_pdbqt.exists():

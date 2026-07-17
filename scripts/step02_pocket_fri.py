@@ -30,7 +30,7 @@ warnings.filterwarnings("ignore")
 
 # ── paths ─────────────────────────────────────────────────────────────────────
 ROOT      = Path(__file__).resolve().parent.parent
-NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L_DIR  = ROOT / "NA-L"
 DATASET   = ROOT / "data" / "affinity" / "dataset.csv"
 OUT_DIR   = ROOT / "data" / "pocket_fri"
 FIG_DIR   = ROOT / "results" / "figures"

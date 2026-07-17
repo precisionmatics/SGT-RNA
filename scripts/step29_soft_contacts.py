@@ -43,7 +43,7 @@ from sklearn.metrics.pairwise import rbf_kernel
 warnings.filterwarnings("ignore")
 
 ROOT    = Path(__file__).resolve().parent.parent
-NA_L    = Path("/home/stalin/Desktop/SGT-RNA/NA-L")
+NA_L    = ROOT / "NA-L"
 S11_NPZ = ROOT / "data" / "features" / "step11_full_features.npz"
 RES_DIR = ROOT / "results"
 

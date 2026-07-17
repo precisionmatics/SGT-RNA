@@ -41,7 +41,7 @@ import seaborn as sns
 
 # ─── 0. Paths ────────────────────────────────────────────────────────────────
 ROOT      = Path(__file__).resolve().parent.parent
-NA_L_DIR  = Path("/home/stalin/Desktop/SGT-RNA/NA-L")          # extracted tar
+NA_L_DIR  = ROOT / "NA-L"          # extracted tar
 INDEX_FILE = Path("/run/media/stalin/PortableSSD/ML_Projects/"
                   "CAML_RNA/data/raw/NL/index/INDEX_general_NL.2020")
 
